@@ -10,7 +10,7 @@ import logging
 import snap7
 from snap7 import six
 from snap7.snap7types import S7Object, buffer_type, buffer_size, BlocksList
-from snap7.snap7types import TS7BlockInfo, param_types, cpu_statuses
+from snap7.snap7types import TS7BlockInfo, param_types, cpu_statuses, TS7Protection, TS7OrderCode
 
 from snap7.common import check_error, load_library, ipv4
 from snap7.snap7exceptions import Snap7Exception
@@ -89,9 +89,22 @@ class Client(object):
         logging.debug("CPU state is %s" % status_string)
         return status_string
 
+    def get_order_code(self):
+        """
+        Gets CPU order code and version info.
+        
+        :returns: a snap7.types.TS7OrderCode object.
+        """
+        ordercode = TS7OrderCode()
+        result = self.library.Cli_GetOrderCode(self.pointer, byref(ordercode))
+        check_error(result, context="client")
+        return ordercode
+
     def get_cpu_info(self):
         """
         Retrieves CPU info from client
+        
+        :returns: a snap7.types.S7CpuInfo object.
         """
         info = snap7.snap7types.S7CpuInfo()
         result = self.library.Cli_GetCpuInfo(self.pointer, byref(info))
@@ -335,6 +348,16 @@ class Client(object):
     def clear_session_password(self):
         """Clears the password set for the current session (logout)."""
         return self.library.Cli_ClearSessionPassword(self.pointer)
+
+    def get_protection(self):
+        """Returns the AG Gets the CPU protection level info.
+
+        :returns: a snap7.types.TS7Protection object.
+        """
+        protect = TS7Protection()
+        result = self.library.Cli_GetProtection(self.pointer, byref(protect))
+        check_error(result, context="client")
+        return protect
 
     def set_connection_params(self, address, local_tsap, remote_tsap):
         """

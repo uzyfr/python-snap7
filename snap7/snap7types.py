@@ -218,6 +218,38 @@ class TS7BlockInfo(ctypes.Structure):
                      self.Header)
 
 
+class TS7Protection(ctypes.Structure):
+    _fields_ = [
+        ('sch_schal', word),
+        ('sch_par', word),
+        ('sch_rel', word),
+        ('bart_sch', word),
+        ('anl_sch', word),
+    ]
+
+    def __str__(self):
+        sch_schal_dict={1: '1', 2: '2', 3: '3' }
+        sch_par_dict={0: '0:NO_PASSWORD', 1: '1', 2: '2', 3: '3' }
+        sch_rel_dict={0: '0', 1: '1', 2: '2', 3: '3', 4: '4' }
+        bart_sch_dict={1: '1:RUN', 2: '2:RUN-P', 3: '3:STOP', 4: '4: MRES', 0: '0: UNDEF' }
+        anl_sch_dict={1: '1:CRST', 2: '2:WRST', 0: '0:UNDEF' }
+        return "sch_schal:<%s>|sch_par:<%s>|sch_rel:<%s>|bart_sch:<%s>|anl_sch:<%s>" \
+               % (sch_schal_dict[self.sch_schal], sch_par_dict[self.sch_par], sch_rel_dict[self.sch_rel], bart_sch_dict[self.bart_sch], anl_sch_dict[self.anl_sch])
+
+
+class TS7OrderCode(ctypes.Structure):
+    _fields_ = [
+        ('Code', ctypes.c_char * 21),
+        ('V1', ctypes.c_byte),
+        ('V2', ctypes.c_byte),
+        ('V3', ctypes.c_byte),
+    ]
+
+    def __str__(self):
+        return "Code: '%s', Version: %s.%s.%s" % (self.Code, self.V1, self.V2, self.V3)
+
+
+
 class S7DataItem(ctypes.Structure):
     _pack_ = 1
     _fields_ = [
