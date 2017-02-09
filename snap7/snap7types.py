@@ -228,10 +228,15 @@ class TS7Protection(ctypes.Structure):
     ]
 
     def __str__(self):
+        # Protection level for the key switch (aka "key"):
         sch_schal_dict={1: '1', 2: '2', 3: '3' }
+        # Assigned protection level (aka "param"):
         sch_par_dict={0: '0:NO_PASSWORD', 1: '1', 2: '2', 3: '3' }
+        # Valid protection level of the CPU (aka "real"):
         sch_rel_dict={0: '0', 1: '1', 2: '2', 3: '3', 4: '4' }
+        # Position of the mode switch (aka "bart_sch"):
         bart_sch_dict={1: '1:RUN', 2: '2:RUN-P', 3: '3:STOP', 4: '4: MRES', 0: '0: UNDEF' }
+        # Setting of the CRST/WRST switch (aka "crst_wrst"):
         anl_sch_dict={1: '1:CRST', 2: '2:WRST', 0: '0:UNDEF' }
         return "sch_schal:<%s>|sch_par:<%s>|sch_rel:<%s>|bart_sch:<%s>|anl_sch:<%s>" \
                % (sch_schal_dict[self.sch_schal], sch_par_dict[self.sch_par], sch_rel_dict[self.sch_rel], bart_sch_dict[self.bart_sch], anl_sch_dict[self.anl_sch])
