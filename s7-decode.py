@@ -228,174 +228,6 @@ hf_s7comm_tia1200_substructure_item = -1 # Substructure
 hf_s7comm_tia1200_var_lid_flags = -1     # LID Flags
 hf_s7comm_tia1200_item_value = -1
 
-'''
-/* Header Block */
-static gint hf_s7comm_header = -1;
-static gint hf_s7comm_header_protid = -1;                   /* Header Byte  0 */
-static gint hf_s7comm_header_rosctr = -1;                   /* Header Bytes 1 */
-static gint hf_s7comm_header_redid = -1;                    /* Header Bytes 2, 3 */
-static gint hf_s7comm_header_pduref = -1;                   /* Header Bytes 4, 5 */
-static gint hf_s7comm_header_parlg = -1;                    /* Header Bytes 6, 7 */
-static gint hf_s7comm_header_datlg = -1;                    /* Header Bytes 8, 9 */
-static gint hf_s7comm_header_errcls = -1;                   /* Header Byte 10, only available at type 2 or 3 */
-static gint hf_s7comm_header_errcod = -1;                   /* Header Byte 11, only available at type 2 or 3 */
-/* Parameter Block */
-static gint hf_s7comm_param = -1;
-static gint hf_s7comm_param_errcod = -1;                    /* Parameter part: Error code */
-static gint hf_s7comm_param_service = -1;                   /* Parameter part: service */
-static gint hf_s7comm_param_itemcount = -1;                 /* Parameter part: item count */
-static gint hf_s7comm_param_data = -1;                      /* Parameter part: data */
-static gint hf_s7comm_param_neg_pdu_length = -1;            /* Parameter part: Negotiate PDU length */
-static gint hf_s7comm_param_setup_reserved1 = -1;           /* Parameter part: Reserved byte in communication setup pdu*/
-
-static gint hf_s7comm_param_maxamq_calling = -1;            /* Parameter part: Max AmQ calling */
-static gint hf_s7comm_param_maxamq_called = -1;             /* Parameter part: Max AmQ called */
-/* Item data */
-static gint hf_s7comm_param_item = -1;
-static gint hf_s7comm_param_subitem = -1;                   /* Substructure */
-static gint hf_s7comm_item_varspec = -1;                    /* Variable specification */
-static gint hf_s7comm_item_varspec_length = -1;             /* Length of following address specification */
-static gint hf_s7comm_item_syntax_id = -1;                  /* Syntax Id */
-static gint hf_s7comm_item_transport_size = -1;             /* Transport size, 1 Byte*/
-static gint hf_s7comm_item_length = -1;                     /* length, 2 Bytes*/
-static gint hf_s7comm_item_db = -1;                         /* DB/M/E/A, 2 Bytes */
-static gint hf_s7comm_item_area = -1;                       /* Area code, 1 byte */
-static gint hf_s7comm_item_address = -1;                    /* Bit address, 3 Bytes */
-static gint hf_s7comm_item_address_byte = -1;               /* address: Byte address */
-static gint hf_s7comm_item_address_bit = -1;                /* address: Bit address */
-static gint hf_s7comm_item_address_nr = -1;                 /* address: Timer/Counter/block number */
-/* Special variable read with Syntax-Id 0xb0 (DBREAD) */
-static gint hf_s7comm_item_dbread_numareas = -1;            /* Number of areas following, 1 Byte*/
-static gint hf_s7comm_item_dbread_length = -1;              /* length, 1 Byte*/
-static gint hf_s7comm_item_dbread_db = -1;                  /* DB number, 2 Bytes*/
-static gint hf_s7comm_item_dbread_startadr = -1;            /* Start address, 2 Bytes*/
-/* NCK access with Syntax-Id 0x82 */
-static gint hf_s7comm_item_nck_areaunit = -1;               /* Bitmask: aaauuuuu: a=area, u=unit */
-static gint hf_s7comm_item_nck_area = -1;
-static gint hf_s7comm_item_nck_unit = -1;
-static gint hf_s7comm_item_nck_column = -1;
-static gint hf_s7comm_item_nck_line = -1;
-static gint hf_s7comm_item_nck_module = -1;
-static gint hf_s7comm_item_nck_linecount = -1;
-
-static gint hf_s7comm_data = -1;
-static gint hf_s7comm_data_returncode = -1;                 /* return code, 1 byte */
-static gint hf_s7comm_data_transport_size = -1;             /* transport size 1 byte */
-static gint hf_s7comm_data_length = -1;                     /* Length of data, 2 Bytes */
-
-static gint hf_s7comm_data_item = -1;
-
-static gint hf_s7comm_readresponse_data = -1;
-static gint hf_s7comm_data_fillbyte = -1;
-
-/* timefunction: s7 timestamp */
-static gint hf_s7comm_data_ts = -1;
-static gint hf_s7comm_data_ts_reserved = -1;
-static gint hf_s7comm_data_ts_year1 = -1;                   /* first byte of BCD coded year, should be ignored */
-static gint hf_s7comm_data_ts_year2 = -1;                   /* second byte of BCD coded year, if 00...89 then it's 2000...2089, else 1990...1999*/
-static gint hf_s7comm_data_ts_month = -1;
-static gint hf_s7comm_data_ts_day = -1;
-static gint hf_s7comm_data_ts_hour = -1;
-static gint hf_s7comm_data_ts_minute = -1;
-static gint hf_s7comm_data_ts_second = -1;
-static gint hf_s7comm_data_ts_millisecond = -1;
-static gint hf_s7comm_data_ts_weekday = -1;
-
-/* userdata, block services */
-static gint hf_s7comm_userdata_data = -1;
-
-static gint hf_s7comm_userdata_param_head = -1;
-static gint hf_s7comm_userdata_param_len = -1;
-static gint hf_s7comm_userdata_param_reqres2 = -1;          /* unknown */
-static gint hf_s7comm_userdata_param_type = -1;
-static gint hf_s7comm_userdata_param_funcgroup = -1;
-static gint hf_s7comm_userdata_param_subfunc_prog = -1;
-static gint hf_s7comm_userdata_param_subfunc_cyclic = -1;
-static gint hf_s7comm_userdata_param_subfunc_block = -1;
-static gint hf_s7comm_userdata_param_subfunc_cpu = -1;
-static gint hf_s7comm_userdata_param_subfunc_sec = -1;
-static gint hf_s7comm_userdata_param_subfunc_time = -1;
-static gint hf_s7comm_userdata_param_subfunc_ncprg = -1;
-static gint hf_s7comm_userdata_param_subfunc = -1;          /* for all other subfunctions */
-static gint hf_s7comm_userdata_param_seq_num = -1;
-static gint hf_s7comm_userdata_param_dataunitref = -1;
-static gint hf_s7comm_userdata_param_dataunit = -1;
-
-/* block functions, list blocks of type */
-static gint hf_s7comm_ud_blockinfo_block_type = -1;         /* Block type, 2 bytes */
-static gint hf_s7comm_ud_blockinfo_block_num = -1;          /* Block number, 2 bytes as int */
-static gint hf_s7comm_ud_blockinfo_block_cnt = -1;          /* Count, 2 bytes as int */
-static gint hf_s7comm_ud_blockinfo_block_flags = -1;        /* Block flags (unknown), 1 byte */
-static gint hf_s7comm_ud_blockinfo_block_lang = -1;         /* Block language, 1 byte, stringlist blocklanguage_names */
-/* block functions, get block infos */
-static gint hf_s7comm_ud_blockinfo_block_num_ascii = -1;    /* Block number, 5 bytes, ASCII*/
-static gint hf_s7comm_ud_blockinfo_filesys = -1;            /* Filesystem, 1 byte, ASCII*/
-static gint hf_s7comm_ud_blockinfo_res_infolength = -1;     /* Length of Info, 2 bytes as int */
-static gint hf_s7comm_ud_blockinfo_res_unknown2 = -1;       /* Unknown blockinfo 2, 2 bytes, HEX*/
-static gint hf_s7comm_ud_blockinfo_res_const3 = -1;         /* Constant 3, 2 bytes, ASCII */
-static gint hf_s7comm_ud_blockinfo_res_unknown = -1;        /* Unknown byte(s) */
-static gint hf_s7comm_ud_blockinfo_subblk_type = -1;        /* Subblk type, 1 byte, stringlist subblktype_names */
-static gint hf_s7comm_ud_blockinfo_load_mem_len = -1;       /* Length load memory, 4 bytes, int */
-static gint hf_s7comm_ud_blockinfo_blocksecurity = -1;      /* Block Security, 4 bytes, stringlist blocksecurity_names*/
-static gint hf_s7comm_ud_blockinfo_interface_timestamp = -1;/* Interface Timestamp, string */
-static gint hf_s7comm_ud_blockinfo_code_timestamp = -1;     /* Code Timestamp, string */
-static gint hf_s7comm_ud_blockinfo_ssb_len = -1;            /* SSB length, 2 bytes, int */
-static gint hf_s7comm_ud_blockinfo_add_len = -1;            /* ADD length, 2 bytes, int */
-static gint hf_s7comm_ud_blockinfo_localdata_len = -1;      /* Length localdata, 2 bytes, int */
-static gint hf_s7comm_ud_blockinfo_mc7_len = -1;            /* Length MC7 code, 2 bytes, int */
-static gint hf_s7comm_ud_blockinfo_author = -1;             /* Author, 8 bytes, ASCII */
-static gint hf_s7comm_ud_blockinfo_family = -1;             /* Family, 8 bytes, ASCII */
-static gint hf_s7comm_ud_blockinfo_headername = -1;         /* Name (Header), 8 bytes, ASCII */
-static gint hf_s7comm_ud_blockinfo_headerversion = -1;      /* Version (Header), 8 bytes, ASCII */
-static gint hf_s7comm_ud_blockinfo_checksum = -1;           /* Block checksum, 2 bytes, HEX */
-static gint hf_s7comm_ud_blockinfo_reserved1 = -1;          /* Reserved 1, 4 bytes, HEX */
-static gint hf_s7comm_ud_blockinfo_reserved2 = -1;          /* Reserved 2, 4 bytes, HEX */
-
-static gint hf_s7comm_userdata_blockinfo_flags = -1;        /* Some flags in Block info response */
-static gint hf_s7comm_userdata_blockinfo_linked = -1;       /* Some flags in Block info response */
-static gint hf_s7comm_userdata_blockinfo_standard_block = -1;
-static gint hf_s7comm_userdata_blockinfo_nonretain = -1;    /* Some flags in Block info response */
-static gint ett_s7comm_userdata_blockinfo_flags = -1;
-static const int *s7comm_userdata_blockinfo_flags_fields[] = {
-    &hf_s7comm_userdata_blockinfo_linked,
-    &hf_s7comm_userdata_blockinfo_standard_block,
-    &hf_s7comm_userdata_blockinfo_nonretain,
-    NULL
-};
-/* Programmer commands, diagnostic data */
-static gint hf_s7comm_diagdata_req_askheadersize = -1;      /* Ask header size, 2 bytes as int */
-static gint hf_s7comm_diagdata_req_asksize = -1;            /* Ask size, 2 bytes as int */
-static gint hf_s7comm_diagdata_req_unknown = -1;            /* for all unknown bytes */
-static gint hf_s7comm_diagdata_req_answersize = -1;         /* Answer size, 2 bytes as int */
-static gint hf_s7comm_diagdata_req_block_type = -1;         /* Block type, 1 byte, stringlist subblktype_names */
-static gint hf_s7comm_diagdata_req_block_num = -1;          /* Block number, 2 bytes as int */
-static gint hf_s7comm_diagdata_req_startaddr_awl = -1;      /* Start address AWL, 2 bytes as int */
-static gint hf_s7comm_diagdata_req_saz = -1;                /* Step address counter (SAZ), 2 bytes as int */
-static gint hf_s7comm_diagdata_req_number_of_lines = -1;    /* Number of lines, 1 byte as int */
-static gint hf_s7comm_diagdata_req_line_address = -1;       /* Address, 2 bytes as int */
-
-/* Flags for requested registers in diagnostic data telegrams */
-static gint hf_s7comm_diagdata_registerflag = -1;           /* Registerflags */
-static gint hf_s7comm_diagdata_registerflag_stw = -1;       /* STW = Status word */
-static gint hf_s7comm_diagdata_registerflag_accu1 = -1;     /* Accumulator 1 */
-static gint hf_s7comm_diagdata_registerflag_accu2 = -1;     /* Accumulator 2 */
-static gint hf_s7comm_diagdata_registerflag_ar1 = -1;       /* Addressregister 1 */
-static gint hf_s7comm_diagdata_registerflag_ar2 = -1;       /* Addressregister 2 */
-static gint hf_s7comm_diagdata_registerflag_db1 = -1;       /* Datablock register 1 */
-static gint hf_s7comm_diagdata_registerflag_db2 = -1;       /* Datablock register 2 */
-static gint ett_s7comm_diagdata_registerflag = -1;
-static const int *s7comm_diagdata_registerflag_fields[] = {
-    &hf_s7comm_diagdata_registerflag_stw,
-    &hf_s7comm_diagdata_registerflag_accu1,
-    &hf_s7comm_diagdata_registerflag_accu2,
-    &hf_s7comm_diagdata_registerflag_ar1,
-    &hf_s7comm_diagdata_registerflag_ar2,
-    &hf_s7comm_diagdata_registerflag_db1,
-    &hf_s7comm_diagdata_registerflag_db2,
-    NULL
-};
-
-'''
 
 # Description for PI service names
 pi_service_names = {
@@ -468,8 +300,8 @@ pi_service_names = {
 }
 
 '''
-# Function 0x28 (PI Start) */
-static gint hf_s7comm_piservice_unknown1 = -1;   /* Unknown bytes */
+# Function 0x28 (PI Start)
+static gint hf_s7comm_piservice_unknown1 = -1;   /* Unknown bytes
 static gint hf_s7comm_piservice_parameterblock = -1;
 static gint hf_s7comm_piservice_parameterblock_len = -1;
 static gint hf_s7comm_piservice_servicename = -1;
@@ -546,8 +378,8 @@ static gint hf_s7comm_pi_n_x_incrementnumber = -1;
 static gint hf_s7comm_pi_n_x_monitoringmode = -1;
 static gint hf_s7comm_pi_n_x_kindofsearch = -1;
 
-static gint hf_s7comm_data_plccontrol_argument = -1;        /* Argument, 2 Bytes as char */
-static gint hf_s7comm_data_plccontrol_block_cnt = -1;       /* Number of blocks, 1 Byte as int */
+static gint hf_s7comm_data_plccontrol_argument = -1;        /* Argument, 2 Bytes as char
+static gint hf_s7comm_data_plccontrol_block_cnt = -1;       /* Number of blocks, 1 Byte as int
 static gint hf_s7comm_data_pi_inse_unknown = -1;
 static gint hf_s7comm_data_plccontrol_part2_len = -1;       /* Length part 2 in bytes, 1 Byte as Int */
 
@@ -1287,6 +1119,35 @@ static gint hf_s7comm_cpu_msgservice_res_reserved3 = -1;
 
 '''
 
+# Function codes in parameter part
+S7COMM_SERV_CPU = 0x00
+S7COMM_SERV_SETUPCOMM = 0xF0
+S7COMM_SERV_READVAR = 0x04
+S7COMM_SERV_WRITEVAR = 0x05
+S7COMM_FUNCREQUESTDOWNLOAD = 0x1A
+S7COMM_FUNCDOWNLOADBLOCK = 0x1B
+S7COMM_FUNCDOWNLOADENDED = 0x1C
+S7COMM_FUNCSTARTUPLOAD = 0x1D
+S7COMM_FUNCUPLOAD = 0x1E
+S7COMM_FUNCENDUPLOAD = 0x1F
+S7COMM_FUNCPISERVICE = 0x28
+S7COMM_FUNC_PLC_STOP = 0x29
+
+param_functionnames = {
+  0x00: ( 'S7COMM_SERV_CPU', "CPU services" ),
+  0xF0: ( 'S7COMM_SERV_SETUPCOMM', "Setup communication" ),
+  0x04: ( 'S7COMM_SERV_READVAR', "Read Var" ),
+  0x05: ( 'S7COMM_SERV_WRITEVAR', "Write Var" ),
+  0x1A: ( 'S7COMM_FUNCREQUESTDOWNLOAD', "Request download" ),
+  0x1B: ( 'S7COMM_FUNCDOWNLOADBLOCK', "Download block" ),
+  0x1C: ( 'S7COMM_FUNCDOWNLOADENDED', "Download ended" ),
+  0x1D: ( 'S7COMM_FUNCSTARTUPLOAD', "Start upload" ),
+  0x1E: ( 'S7COMM_FUNCUPLOAD', "Upload" ),
+  0x1F: ( 'S7COMM_FUNCENDUPLOAD', "End upload" ),
+  0x28: ( 'S7COMM_FUNCPISERVICE', "PI-Service" ),
+  0x29: ( 'S7COMM_FUNC_PLC_STOP', "PLC Stop" ),
+}
+
 cpu_msgservice_almtype_names = {
   0: "SCAN_ABORT",
   1: "SCAN_INITIATE",
@@ -1323,8 +1184,8 @@ static gint ett_s7comm_item_address = -1;                           /* Subtree f
 static gint ett_s7comm_cpu_alarm_message = -1;                      /* Subtree for an alarm message */
 static gint ett_s7comm_cpu_alarm_message_object = -1;               /* Subtree for an alarm message block*/
 static gint ett_s7comm_cpu_alarm_message_timestamp = -1;            /* Subtree for an alarm message timestamp */
-static gint ett_s7comm_cpu_alarm_message_associated_value = -1;     /* Subtree for an alarm message associated value */
-static gint ett_s7comm_cpu_diag_msg = -1;                           /* Subtree for a CPU diagnostic message */
+static gint ett_s7comm_cpu_alarm_message_associated_value = -1;     # Subtree for an alarm message associated value */
+static gint ett_s7comm_cpu_diag_msg = -1;                           # Subtree for a CPU diagnostic message
 '''
 
 mon_names = ( "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" );
@@ -1385,23 +1246,233 @@ S7_FUNCTION_CODE = {
 class S7Packet(object):
     S7COMM_MIN_TELEGRAM_LENGTH=10 # Min. telegram length for heuristic check
     S7COMM_PROT_ID=0x32 # Protocol identifier
-
+    S7COMM_ROSCTR_JOB = 0x01
+    S7COMM_ROSCTR_ACK = 0x02
+    S7COMM_ROSCTR_ACK_DATA = 0x03
+    S7COMM_ROSCTR_USERDATA = 0x07
 
     def __init__(self, payload):
-        if len(payload) < self.S7COMM_MIN_TELEGRAM_LENGTH:
-            raise ValueError('payload length is too small ({} bytes < {})'.format(len(payload), self.S7COMM_MIN_TELEGRAM_LENGTH))
-        self.payload = payload # in hex as string
-        self.hp = self.payload.decode('hex') # as normal hex values
+        if len(payload) < S7Packet.S7COMM_MIN_TELEGRAM_LENGTH:
+            raise ValueError('payload length is too small ({} bytes < {})'.format(len(payload), S7Packet.S7COMM_MIN_TELEGRAM_LENGTH))
+        self.hp = payload.decode('hex') # as normal hex values
         self.pp = {0: ('field_name', 'value', 'default comment', 0)}
-        self.rosctr=0
-        self.hlength=10 # Header 10 Bytes, when type 2 or 3 (response) -> 12 Bytes in _parse_payload */
-        # fsize is size of field in bytes
-        if not self.is_s7():
-            raise ValueError("payload doesn't seems to be a S7comm packet")
+        # BEGIN S7 HEADER:
+        self.header_protid=unp('!B', self.hp[0:1])[0]
+        self._add_field('Protocol ID', self.header_protid, 'Protocol ID', 1)
+        self.header_rosctr=unp('!B', self.hp[1:2])[0]
+	self._add_field('ROSCTR', rosctr_names[self.header_rosctr], 'ROSCTR (Remote Operating Service Control) - PDU Type', 1)
+        # Header size= 10 Bytes, execpt when type 2 or 3 (response) -> 12 Bytes
+        if ( 2<= self.header_rosctr <= 3):
+          # When type 2 or 3 (response) -> 12 Bytes
+          self.hlength=12
+        else:
+          # Defaults to 10 bytes
+          self.hlength=10
+        if not ( ( self.S7COMM_PROT_ID == self.header_protid ) and ( 0x01 <= self.header_rosctr <= 0x07 ) ):
+          # Not a S7 packet
+          raise ValueError("payload doesn't seems to be a S7comm packet")
+        # Redundancy Identification (Reserved)
+        self.header_redid=unp('!H', self.hp[2:4])[0]
+        # Protocol Data Unit Reference
+        self.header_pduref=unp('!H', self.hp[4:6])[0]
+	self._add_field('PDUREF', self.header_pduref, 'Packet Data Unit Reference', 1)
+        # Parameter length
+        self.header_parlg=unp('!H', self.hp[6:8])[0]
+        # Data length
+        self.header_datalg=unp('!H', self.hp[8:10])[0]
+        # Only available at type 2 or 3 :
+        if ( 2<= self.header_rosctr <= 3):
+          self.header_errcls=unp('!B', self.hp[10:11])[0]
+          self.header_errcod=unp('!B', self.hp[11:12])[0]
+        else:
+          self.header_errcls=-1
+          self.header_errcod=-1
+        # END Header
+        # BEGIN PARAMETER:
+        if self.header_errcls > 0 or self.header_errcod > 0:
+          # when there is an error, init the errorcode of the parameterpart from the header
+          self.param_errcod=unp('!H', self.hp[10:12])[0]
+        else:
+          self.param_errcod=-1
+        self.param_service=-1
+        self.param_itemcount = -1
+        self.param_data = -1
+        self.param_neg_pdu_length = -1
+        self.param_setup_reserved1 = -1
+        self.param_maxamq_calling = -1
+        self.param_maxamq_called = -1
+        # END PARAMETER
+	# BEGIN ITEM DATA
+	self.param_item = -1
+	self.param_subitem = -1		# Substructure
+	self.item_varspec = -1		# Variable specification 
+	self.item_varspec_length = -1	# Length of following address specification
+	self.item_syntax_id = -1	# Syntax Id
+	self.item_transport_size = -1	# Transport size, 1 Byte
+	self.item_length = -1		# length, 2 Bytes
+	self.item_db = -1		# DB/M/E/A, 2 Bytes
+	self.item_area = -1		# Area code, 1 byte
+	self.item_address = -1		# Bit address, 3 Bytes
+	self.item_address_byte = -1	# address: Byte address
+	self.item_address_bit = -1	# address: Bit address
+	self.item_address_nr = -1	# address: Timer/Counter/block number
+	# Special variable read with Syntax-Id 0xb0 (DBREAD)
+	self.item_dbread_numareas = -1	# Number of areas following, 1 Byte
+	self.item_dbread_length = -1	# length, 1 Byte
+	self.item_dbread_db = -1	# DB number, 2 Bytes
+	self.item_dbread_startadr = -1	# Start address, 2 Bytes
+	# NCK access with Syntax-Id 0x82
+	self.item_nck_areaunit = -1	# Bitmask: aaauuuuu: a=area, u=unit
+	self.item_nck_area = -1	
+	self.item_nck_unit = -1
+	self.item_nck_column = -1
+	self.item_nck_line = -1
+	self.item_nck_module = -1
+	self.item_nck_linecount = -1
+
+	self.data_returncode = -1                 # return code, 1 byte
+	self.data_transport_size = -1             # transport size 1 byte
+	self.data_length = -1                     # Length of data, 2 Bytes
+
+	self.data_item = -1
+
+	self.readresponse_data = -1
+	self.data_fillbyte = -1
+	# END ITEM DATA
+
+	# timefunction: s7 timestamp
+	self.data_ts = -1
+	self.data_ts_reserved = -1
+	self.data_ts_year1 = -1                   # first byte of BCD coded year, should be ignored
+	self.data_ts_year2 = -1                   # second byte of BCD coded year, if 00...89 then it's 2000...2089, else 1990...1999
+	self.data_ts_month = -1
+	self.data_ts_day = -1
+	self.data_ts_hour = -1
+	self.data_ts_minute = -1
+	self.data_ts_second = -1
+	self.data_ts_millisecond = -1
+	self.data_ts_weekday = -1
+
+	# userdata, block services
+	self.userdata_data = -1
+
+	self.userdata_param_head = -1
+	self.userdata_param_len = -1
+	self.userdata_param_reqres2 = -1          # unknown
+	self.userdata_param_type = -1
+	self.userdata_param_funcgroup = -1
+	self.userdata_param_subfunc_prog = -1
+	self.userdata_param_subfunc_cyclic = -1
+	self.userdata_param_subfunc_block = -1
+	self.userdata_param_subfunc_cpu = -1
+	self.userdata_param_subfunc_sec = -1
+	self.userdata_param_subfunc_time = -1
+	self.userdata_param_subfunc_ncprg = -1
+	self.userdata_param_subfunc = -1          # for all other subfunctions
+	self.userdata_param_seq_num = -1
+	self.userdata_param_dataunitref = -1
+	self.userdata_param_dataunit = -1
+
+	# block functions, list blocks of type
+	self.ud_blockinfo_block_type = -1         # Block type, 2 bytes
+	self.ud_blockinfo_block_num = -1          # Block number, 2 bytes as int
+	self.ud_blockinfo_block_cnt = -1          # Count, 2 bytes as int
+	self.ud_blockinfo_block_flags = -1        # Block flags (unknown), 1 byte
+	self.ud_blockinfo_block_lang = -1         # Block language, 1 byte, stringlist blocklanguage_names
+	# block functions, get block infos
+	self.ud_blockinfo_block_num_ascii = -1    # Block number, 5 bytes, ASCII
+	self.ud_blockinfo_filesys = -1            # Filesystem, 1 byte, ASCII
+	self.ud_blockinfo_res_infolength = -1     # Length of Info, 2 bytes as int
+	self.ud_blockinfo_res_unknown2 = -1       # Unknown blockinfo 2, 2 bytes, HEX
+	self.ud_blockinfo_res_const3 = -1         # Constant 3, 2 bytes, ASCII
+	self.ud_blockinfo_res_unknown = -1        # Unknown byte(s)
+	self.ud_blockinfo_subblk_type = -1        # Subblk type, 1 byte, stringlist subblktype_names
+	self.ud_blockinfo_load_mem_len = -1       # Length load memory, 4 bytes, int
+	self.ud_blockinfo_blocksecurity = -1      # Block Security, 4 bytes, stringlist blocksecurity_names
+	self.ud_blockinfo_interface_timestamp = -1# Interface Timestamp, string
+	self.ud_blockinfo_code_timestamp = -1     # Code Timestamp, string
+	self.ud_blockinfo_ssb_len = -1            # SSB length, 2 bytes, int
+	self.ud_blockinfo_add_len = -1            # ADD length, 2 bytes, int
+	self.ud_blockinfo_localdata_len = -1      # Length localdata, 2 bytes, int
+	self.ud_blockinfo_mc7_len = -1            # Length MC7 code, 2 bytes, int
+	self.ud_blockinfo_author = -1             # Author, 8 bytes, ASCII
+	self.ud_blockinfo_family = -1             # Family, 8 bytes, ASCII
+	self.ud_blockinfo_headername = -1         # Name (Header), 8 bytes, ASCII
+	self.ud_blockinfo_headerversion = -1      # Version (Header), 8 bytes, ASCII
+	self.ud_blockinfo_checksum = -1           # Block checksum, 2 bytes, HEX
+	self.ud_blockinfo_reserved1 = -1          # Reserved 1, 4 bytes, HEX
+	self.ud_blockinfo_reserved2 = -1          # Reserved 2, 4 bytes, HEX
+
+	self.userdata_blockinfo_flags = -1        # Some flags in Block info response
+	self.userdata_blockinfo_linked = -1       # Some flags in Block info response
+	self.userdata_blockinfo_standard_block = -1
+	self.userdata_blockinfo_nonretain = -1    # Some flags in Block info response
+	self.ett_s7comm_userdata_blockinfo_flags = -1
+	# Programmer commands, diagnostic data
+	self.diagdata_req_askheadersize = -1      # Ask header size, 2 bytes as int
+	self.diagdata_req_asksize = -1            # Ask size, 2 bytes as int
+	self.diagdata_req_unknown = -1            # for all unknown bytes
+	self.diagdata_req_answersize = -1         # Answer size, 2 bytes as int
+	self.diagdata_req_block_type = -1         # Block type, 1 byte, stringlist subblktype_names
+	self.diagdata_req_block_num = -1          # Block number, 2 bytes as int
+	self.diagdata_req_startaddr_awl = -1      # Start address AWL, 2 bytes as int
+	self.diagdata_req_saz = -1                # Step address counter (SAZ), 2 bytes as int
+	self.diagdata_req_number_of_lines = -1    # Number of lines, 1 byte as int
+	self.diagdata_req_line_address = -1       # Address, 2 bytes as int
+
+	# Flags for requested registers in diagnostic data telegrams
+	self.diagdata_registerflag = -1           # Registerflags
+	self.diagdata_registerflag_stw = -1       # STW = Status word
+	self.diagdata_registerflag_accu1 = -1     # Accumulator 1
+	self.diagdata_registerflag_accu2 = -1     # Accumulator 2
+	self.diagdata_registerflag_ar1 = -1       # Addressregister 1
+	self.diagdata_registerflag_ar2 = -1       # Addressregister 2
+	self.diagdata_registerflag_db1 = -1       # Datablock register 1
+	self.diagdata_registerflag_db2 = -1       # Datablock register 2
+	self.ett_s7comm_diagdata_registerflag = -1
+
+	if self.header_rosctr == S7Packet.S7COMM_ROSCTR_JOB or self.header_rosctr == S7Packet.S7COMM_ROSCTR_ACK_DATA:
+	  self._s7comm_decode_req_resp()
+	elif self.header_rosctr == S7Packet.S7COMM_ROSCTR_USERDATA:
+	  self._s7comm_decode_ud()
+	# XXX
         self._parse_payload()
 
-    def is_s7(self):
-        return ( self.S7COMM_PROT_ID == unp('!B', self.hp[:1])[0] ) and ( 0x01 <= unp('!B', self.hp[1:2])[0] <= 0x07 )
+    def _s7comm_decode_ud(self):
+	# XXX
+	return
+
+    def _s7comm_decode_req_resp(self):
+	# XXX
+        # BEGIN PARAMETER:
+	offset = self.hlength
+	# XXX PRINT ME
+        self.param_service = unp('!B', self.hp[offset:offset+1])[0]
+	offset+=1
+        self._add_field('Function', param_functionnames[self.param_service], 'Service / Function name', 1)
+	return
+	if self.header_rosctr == S7Packet.S7COMM_ROSCTR_JOB:
+	  if self.param_service == S7COMM_SERV_READVAR or self.param_service == S7COMM_SERV_WRITEVAR:
+            self.param_itemcount = unp('!B', self.hp[offset:offset+1])[0]
+	    offset+=1
+            for i in range(self.param_itemcount):
+              offset_old = offset
+              offset = self._s7comm_decode_param_item(offset, i)
+	      for_len = offset - offset_old
+	      if ((for_len % 2) and (i < self.param_itemcount)):
+	        offset += 1
+	      
+        self.param_itemcount = -1
+        self.param_data = -1
+        self.param_neg_pdu_length = -1
+        self.param_setup_reserved1 = -1
+        self.param_maxamq_calling = -1
+        self.param_maxamq_called = -1
+        # END PARAMETER
+
+    def _s7comm_decode_param_item(self, offset, i):
+	# TODO
+	return 
 
     def _add_field(self, name, value, comment='default comment', fsize=0):
         indx = max(self.pp.keys())+1
@@ -1413,11 +1484,11 @@ class S7Packet(object):
     def _parse_payload(self):
         hp = deepcopy(self.hp)
         # Get the type byte and deduce hlength
+        self.protocol_id = unp('!B', self.hp[0:1])[0]
         self.rosctr = unp('!B', self.hp[1:2])[0]
         if ( 2<= self.rosctr <= 3):
             hlength=12 # Header 10 Bytes, when type 2 or 3 (response) -> 12 Bytes 
         #print "ROSCTR={}".format(rosctr_names[self.rosctr])
-        self._add_field('ROSCTR', rosctr_names[self.rosctr], 'ROSCTR (Remote Operating Service Control) - PDU Type', 1)
         return
 
 
@@ -1459,7 +1530,7 @@ class S7Packet(object):
         self._add_field('packet footer', footer, 'packet footer with pdu type', 4)
 
     def print_packet(self):
-        print "{0:10} : {1:100} : {2:40}".format('FNAME', 'VALUE', 'COMMENT')
+        #print "{0:10} : {1:100} : {2:40}".format('FNAME', 'VALUE', 'COMMENT')
         del self.pp[0] # just remove init value
         
         for indx in sorted(self.pp.iterkeys()):
@@ -1467,7 +1538,7 @@ class S7Packet(object):
             field_value = self.pp[indx][1]
             field_comment = self.pp[indx][2]
             print "{0:10} : {1:100} : {2:40}".format( field_name, field_value, field_comment )
-        print ""
+        #print ""
         
 filename="4-S7comm-Download-DB1-with-password-request.pcap"
 
@@ -1492,10 +1563,11 @@ for ts, pkt in dpkt.pcap.Reader(open(filename,'r')):
         try:
           s7p=S7Packet(s7_data.encode('hex'))
           s7p.print_packet()
-        except Exception as e:
+        except ValueError as e:
           e_type='Unknown'
           if isinstance(e, ValueError):
             e_type='ValueError'
+            continue
           elif isinstance(e, KeyError):
             e_type='KeyError'
           print "** Exception [{}]: {}".format(e_type, e)
