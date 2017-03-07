@@ -32,6 +32,90 @@ s7comm_item_return_valuenames = {
   0xff : ( 'S7COMM_ITEM_RETVAL_DATA_OK', "Success" ),
 }
 
+# Syntax Ids of variable specification
+S7COMM_SYNTAXID_S7ANY = 0x10		# Address data S7-Any pointer-like DB1.DBX10.2
+S7COMM_SYNTAXID_PBC_ID = 0x13		# R_ID for PBC
+S7COMM_SYNTAXID_ALARM_LOCKFREESET= 0x15	# Alarm lock/free dataset
+S7COMM_SYNTAXID_ALARM_INDSET = 0x16	# Alarm indication dataset
+S7COMM_SYNTAXID_ALARM_ACKSET = 0x19	# Alarm acknowledge message dataset
+S7COMM_SYNTAXID_ALARM_QUERYREQSET=0x1a	# Alarm query request dataset
+S7COMM_SYNTAXID_NOTIFY_INDSET = 0x1c	# Notify indication dataset
+S7COMM_SYNTAXID_DRIVEESANY = 0xa2	# seen on Drive ES Starter with routing over S7
+S7COMM_SYNTAXID_1200SYM = 0xb2		# Symbolic address mode of S7-1200
+S7COMM_SYNTAXID_DBREAD = 0xb0		# Kind of DB block read, seen only at an S7-400
+S7COMM_SYNTAXID_NCK = 0x82		# Sinumerik NCK HMI access
+
+item_syntaxid_names = {
+  S7COMM_SYNTAXID_S7ANY: ( 'S7COMM_SYNTAXID_S7ANY', "S7ANY: Address data S7-Any pointer-like DB1.DBX10.2" ),
+  S7COMM_SYNTAXID_PBC_ID: ( 'S7COMM_SYNTAXID_PBC_ID', "PBC-R_ID: R_ID for PBC" ),
+  S7COMM_SYNTAXID_ALARM_LOCKFREESET: ( 'S7COMM_SYNTAXID_ALARM_LOCKFREESET', "ALARM_LOCKFREE: Alarm lock/free dataset" ),
+  S7COMM_SYNTAXID_ALARM_INDSET: ( 'S7COMM_SYNTAXID_ALARM_INDSET', "ALARM_IND: Alarm indication dataset" ),
+  S7COMM_SYNTAXID_ALARM_ACKSET: ( 'S7COMM_SYNTAXID_ALARM_ACKSET', "ALARM_ACK: Alarm acknowledge message dataset" ),
+  S7COMM_SYNTAXID_ALARM_QUERYREQSET: ( 'S7COMM_SYNTAXID_ALARM_QUERYREQSET', "ALARM_QUERYREQ: Alarm query request dataset" ),
+  S7COMM_SYNTAXID_NOTIFY_INDSET: ( 'S7COMM_SYNTAXID_NOTIFY_INDSET', "NOTIFY_IND: Notify indication dataset" ),
+  S7COMM_SYNTAXID_DRIVEESANY: ( 'S7COMM_SYNTAXID_DRIVEESANY', "DRIVEESANY: seen on Drive ES Starter with routing over S7" ),
+  S7COMM_SYNTAXID_1200SYM: ( 'S7COMM_SYNTAXID_1200SYM', "1200SYM: Symbolic address mode of S7-1200" ),
+  S7COMM_SYNTAXID_DBREAD: ( 'S7COMM_SYNTAXID_DBREAD', "DBREAD: Kind of DB block read, seen only at an S7-400" ),
+  S7COMM_SYNTAXID_DBREAD: ( 'S7COMM_SYNTAXID_NCK', "NCK: Sinumerik NCK HMI access" ),
+}
+
+# Transport sizes in data
+S7COMM_DATA_TRANSPORT_SIZE_NULL = 0
+S7COMM_DATA_TRANSPORT_SIZE_BBIT = 3	# bit access, len is in bits
+S7COMM_DATA_TRANSPORT_SIZE_BBYTE = 4	# byte/word/dword access, len is in bits
+S7COMM_DATA_TRANSPORT_SIZE_BINT = 5	# integer access, len is in bits
+S7COMM_DATA_TRANSPORT_SIZE_BDINT = 6	# integer access, len is in bytes
+S7COMM_DATA_TRANSPORT_SIZE_BREAL = 7	# real access, len is in bytes
+S7COMM_DATA_TRANSPORT_SIZE_BSTR = 9	# octet string, len is in bytes
+
+data_transportsizenames = {
+  S7COMM_DATA_TRANSPORT_SIZE_NULL: ( 'S7COMM_DATA_TRANSPORT_SIZE_NULL',	"NULL" ),
+  S7COMM_DATA_TRANSPORT_SIZE_BBIT: ( 'S7COMM_DATA_TRANSPORT_SIZE_BBIT',	"BIT: bit access, len is in bits" ),
+  S7COMM_DATA_TRANSPORT_SIZE_BBYTE: ( 'S7COMM_DATA_TRANSPORT_SIZE_BBYTE',	"BYTE/WORD/DWORD: byte/word/dword access, len is in bits" ),
+  S7COMM_DATA_TRANSPORT_SIZE_BINT: ( 'S7COMM_DATA_TRANSPORT_SIZE_BINT',	"INTEGER: integer access, len is in bits" ),
+  S7COMM_DATA_TRANSPORT_SIZE_BDINT: ( 'S7COMM_DATA_TRANSPORT_SIZE_BDINT',	"DINTEGER: integer access, len is in bytes" ),
+  S7COMM_DATA_TRANSPORT_SIZE_BREAL: ( 'S7COMM_DATA_TRANSPORT_SIZE_BREAL',	"REAL: real access, len is in bytes" ),
+  S7COMM_DATA_TRANSPORT_SIZE_BSTR: ( 'S7COMM_DATA_TRANSPORT_SIZE_BSTR',	"OCTET STRING: octet string, len is in bytes" ),
+}
+
+ 
+# Area names
+S7COMM_AREA_SYSINFO = 0x03	# System info of 200 family
+S7COMM_AREA_SYSFLAGS = 0x05	# System flags of 200 family
+S7COMM_AREA_ANAIN = 0x06	# analog inputs of 200 family
+S7COMM_AREA_ANAOUT = 0x07	# analog outputs of 200 family
+S7COMM_AREA_P = 0x80		# direct peripheral access
+S7COMM_AREA_INPUTS = 0x81
+S7COMM_AREA_OUTPUTS = 0x82
+S7COMM_AREA_FLAGS = 0x83
+S7COMM_AREA_DB = 0x84		# data blocks
+S7COMM_AREA_DI = 0x85		# instance data blocks
+S7COMM_AREA_LOCAL = 0x86	# local data (should not be accessible over network)
+S7COMM_AREA_V = 0x87		# previous (Vorgaenger) local data (should not be accessible over network)
+S7COMM_AREA_COUNTER = 28	# S7 counters
+S7COMM_AREA_TIMER = 29		# S7 timers
+S7COMM_AREA_COUNTER200 = 30	# IEC counters (200 family)
+S7COMM_AREA_TIMER200 = 31	# IEC timers (200 family)
+
+item_areanames = {
+  S7COMM_AREA_SYSINFO: ( 'S7COMM_AREA_SYSINFO',  "System info of 200 family" ),
+  S7COMM_AREA_SYSFLAGS: ( 'S7COMM_AREA_SYSFLAGS',  "System flags of 200 family" ),
+  S7COMM_AREA_ANAIN: ( 'S7COMM_AREA_ANAIN',  "Analog inputs of 200 family" ),
+  S7COMM_AREA_ANAOUT: ( 'S7COMM_AREA_ANAOUT',  "Analog outputs of 200 family" ),
+  S7COMM_AREA_P: ( 'S7COMM_AREA_P',  "Direct peripheral access (P)" ),
+  S7COMM_AREA_INPUTS: ( 'S7COMM_AREA_INPUTS',  "Inputs (I)" ),
+  S7COMM_AREA_OUTPUTS: ( 'S7COMM_AREA_OUTPUTS',  "Outputs (Q)" ),
+  S7COMM_AREA_FLAGS: ('S7COMM_AREA_FLAGS',  "Flags (M)" ),
+  S7COMM_AREA_DB: ( 'S7COMM_AREA_DB',  "Data blocks (DB)" ),
+  S7COMM_AREA_DI: ( 'S7COMM_AREA_DI',  "Instance data blocks (DI)" ),
+  S7COMM_AREA_LOCAL: ( 'S7COMM_AREA_LOCAL',  "Local data (L)" ),
+  S7COMM_AREA_V: ( 'S7COMM_AREA_VS7COMM_AREA_V',  "Unknown yet (V)" ),
+  S7COMM_AREA_COUNTER: ( 'S7COMM_AREA_COUNTER',  "S7 counters (C)" ),
+  S7COMM_AREA_TIMER: ( 'S7COMM_AREA_TIMER',  "S7 timers (T)" ),
+  S7COMM_AREA_COUNTER200: ( 'S7COMM_AREA_COUNTER200',  "IEC counters (200 family)" ),
+  S7COMM_AREA_TIMER200: ( 'S7COMM_AREA_TIMER200',  "IEC timers (200 family)" ),
+}
+
 # PDU types
 rosctr_names = {
   0x01: ( 'S7COMM_ROSCTR_JOB', "Job: Request: job with acknowledgement" ),
@@ -1305,7 +1389,7 @@ class S7Packet(object):
 	# BEGIN ITEM DATA
 	self.param_item = -1
 	self.param_subitem = -1		# Substructure
-	self.item_varspec = -1		# Variable specification 
+	self.item_varspec_type = -1		# Variable specification 
 	self.item_varspec_length = -1	# Length of following address specification
 	self.item_syntax_id = -1	# Syntax Id
 	self.item_transport_size = -1	# Transport size, 1 Byte
@@ -1472,7 +1556,116 @@ class S7Packet(object):
 
     def _s7comm_decode_param_item(self, offset, i):
 	# TODO
-	return 
+	self.item_varspec_type = unp('!B', self.hp[offset:offset+1])[0]
+	offset += 1
+	self.item_varspec_length = unp('!B', self.hp[offset:offset+1])[0]
+	offset += 1
+	self.item_syntax_id = unp('!B', self.hp[offset:offset+1])[0]
+	offset += 1
+	# Classic S7:  type = 0x12, len=10, syntax-id=0x10 for ANY-Pointer
+	# TIA S7-1200: type = 0x12, len=14, syntax-id=0xb2 (symbolic addressing??)
+	# Drive-ES Starter with routing: type = 0x12, len=10, syntax-id=0xa2 for ANY-Pointer
+	if (self.item_varspec_type == 0x12 ) and ( self.item_varspec_length == 10 ) and ( self.item_syntax_id == S7COMM_SYNTAXID_S7ANY):
+	  # Step 7 Classic 300 400
+	  return self._s7comm_decode_param_item_300(self, offset, i)
+	elif (self.item_varspec_type == 0x12 ) and ( self.item_varspec_length >= 7 ) and ( self.item_syntax_id == S7COMM_SYNTAXID_DBREAD):
+	  # S7-400 special address mode (kind of cyclic read)
+	  return self._s7comm_decode_param_item_400(self, offset, i)
+	elif (self.item_varspec_type == 0x12 ) and ( self.item_varspec_length >= 14 ) and ( self.item_syntax_id == S7COMM_SYNTAXID_1200SYM):
+	  # TIA S7 1200 symbolic address mode
+	  return self._s7comm_decode_param_item_1200(self, offset, i)
+
+    def _s7comm_decode_param_item_300(self, offset, i):
+	# Step 7 Classic 300 400
+        self._add_field('PLC Model', "Step 7 Classic 300 400", 'PLC Model', 1)
+	self.item_transport_size = unp('!B', self.hp[offset:offset+1])[0]
+	offset += 1
+	self.item_length = unp('!H', self.hp[offset:offset+2])[0]
+	offset += 2
+	# DB Number 2 bytes
+	self.item_db = unp('!H', self.hp[offset:offset+2])[0]
+	offset += 2
+        self._add_field('DB Number', self.item_db, 'DB Number', 1)
+	# Area 1 byte
+	self.item_area = unp('!B', self.hp[offset:offset+1])[0]
+	offset += 1
+        self._add_field('Area', self.item_area, 'Area', 1)
+	# Address 3 bytes
+	self.item_address = unp('!I', self.hp[offset:offset+4])[0] & 0xffffff
+	offset += 3
+        self._add_field('Item Address', self.item_address, 'Item Address', 1)
+
+	if self.item_area == S7COMM_AREA_P:
+	  item_text = " (P"
+	elif self.item_area == S7COMM_AREA_INPUTS:
+	  item_text = " (I"
+	elif self.item_area == S7COMM_AREA_OUTPUTS:
+	  item_text = " (Q"
+	elif self.item_area == S7COMM_AREA_FLAGS:
+	  item_text = " (M"
+	elif self.item_area == S7COMM_AREA_DB:
+	  item_text = " (DB{}.DBX".format(self.item_db)
+	elif self.item_area == S7COMM_AREA_DI:
+	  item_text = " (DI{}.DIX".format(self.item_db)
+	elif self.item_area == S7COMM_AREA_LOCAL:
+	  item_text = " (L"
+	elif self.item_area == S7COMM_AREA_COUNTER:
+	  item_text = " (C"
+	elif self.item_area == S7COMM_AREA_TIMER:
+	  item_text = " (T"
+	else:
+	  item_text = " (unknown area"
+	if ( self.item_area == S7COMM_AREA_TIMER ) or ( self.item_area == S7COMM_AREA_COUNTER):
+	  item_text += "{})".format(self.item_address)
+	  self.item_address_nr = self.item_address
+	else:
+	  item_text += "{}.{} {} {})".format(self.item_address/8, self.item_address % 8, item_transportsizenames[self.item_transport_size], self.item_length )
+        self._add_field('Item', item_text, 'Item TEXT', 1)
+	return offset
+
+    def _s7comm_decode_param_item_400(self, offset, i):
+ 	# S7-400 special address mode (kind of cyclic read)
+        self._add_field('PLC Model', "S7-400", 'PLC Model', 1)
+	self.item_dbread_numareas = unp('!B', self.hp[offset:offset+1])[0]
+	offset += 1
+        self._add_field('NBAREA', self.item_dbread_numareas, 'Number of areas', 1)
+	for i in range(self.item_dbread_numareas):
+	  self.item_dbread_length = unp('!B', self.hp[offset:offset+1])[0] # Number of Bytes to read, 1 Byte
+	  offset += 1
+          self._add_field('NBYREAD', self.item_dbread_length, 'Number of Bytes to read', 1)
+	  self.item_dbread_db = unp('!H', self.hp[offset:offset+2])[0] # DB Number, 2 Bytes
+	  offset += 2
+          self._add_field('DB Number', self.item_dbread_db, 'DB Number', 1)
+	  self.item_dbread_startadr = unp('!H', self.hp[offset:offset+2])[0] # Start address, 2 Bytes
+	  offset += 2
+          self._add_field('StartAddr', self.item_dbread_startadr, 'Start address', 1)
+	  item_text = "[{}]: (DB{}.DBB {} BYTE {})".format(i, self.item_dbread_db, self.item_dbread_startadr, self.item_dbread_length)
+          self._add_field('Item', item_text, 'Item TEXT', 1)
+	return offset 
+
+    def _s7comm_decode_param_item_1200(self, offset, i):
+ 	# TIA S7 1200 symbolic address mode
+	# XXX TODO XXX
+	return offset
+	# Skipping useless hf_s7comm_tia1200_item_reserved1
+	offset += 1
+        self._add_field('PLC Model', "S7 1200", 'PLC Model', 1)
+	self.item_dbread_numareas = unp('!B', self.hp[offset:offset+1])[0]
+	offset += 1
+        self._add_field('NBAREA', self.item_dbread_numareas, 'Number of areas', 1)
+	for i in range(self.item_dbread_numareas):
+	  self.item_dbread_length = unp('!B', self.hp[offset:offset+1])[0] # Number of Bytes to read, 1 Byte
+	  offset += 1
+          self._add_field('NBYREAD', self.item_dbread_length, 'Number of Bytes to read', 1)
+	  self.item_dbread_db = unp('!H', self.hp[offset:offset+2])[0] # DB Number, 2 Bytes
+	  offset += 2
+          self._add_field('DB Number', self.item_dbread_db, 'DB Number', 1)
+	  self.item_dbread_startadr = unp('!H', self.hp[offset:offset+2])[0] # Start address, 2 Bytes
+	  offset += 2
+          self._add_field('StartAddr', self.item_dbread_startadr, 'Start address', 1)
+	  item_text = "[{}]: (DB{}.DBB {} BYTE {})".format(i, self.item_dbread_db, self.item_dbread_startadr, self.item_dbread_length)
+          self._add_field('Item', item_text, 'Item TEXT', 1)
+	return offset 
 
     def _add_field(self, name, value, comment='default comment', fsize=0):
         indx = max(self.pp.keys())+1
